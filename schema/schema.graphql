@@ -37,8 +37,8 @@ type Todo{
 type User{
     id: String!
     name: String!
-    email: String
-    todos: [Todo]
+    email: String!
+    todos: [Todo!]
 }
 
 type Query {
@@ -47,8 +47,8 @@ type Query {
     getAllStudents: [Student]
     getStudent(id:ID!): Student
     getAllTodos: [Todo]
-    getTodo(id: String) : Todo
-    getUser(id: String): User
+    getTodo(id: String!) : Todo
+    getUser(id: String!): User
     getUsers: [User]
 }
 
