@@ -30,8 +30,21 @@ type Todo{
     id: String!
     name: String!
     content: String!
-    status: TodoStatus!
+    status: TodoStatus
     user: User!
+}
+
+input AddTodoInput{
+    name: String!
+    content: String!
+    user: String!
+}
+
+input UpdateTodoInput{
+    name: String
+    content: String
+    user: String
+    status: TodoStatus
 }
 
 type User{
@@ -39,6 +52,11 @@ type User{
     name: String!
     email: String!
     todos: [Todo!]
+}
+
+type TodoNotification{
+    operation: String!
+    todo: Todo!
 }
 
 type Query {
@@ -50,5 +68,15 @@ type Query {
     getTodo(id: String!) : Todo
     getUser(id: String!): User
     getUsers: [User]
+}
+
+type Mutation{
+    addTodo(addTodoInput:AddTodoInput!): Todo!
+    updateTodo(id:String!,updateTodoInput : UpdateTodoInput!): Todo!
+    removeTodo(id:String): String!
+}
+
+type Subscription{
+    newTodo: TodoNotification!
 }
 
